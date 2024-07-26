@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Скачать отчет</title>
+</head>
+<body>
+    <form id="report-form" method="get" action="export-report/">
+        <label for="from_month">Выберите начальный месяц:</label>
+        <select name="from_month" id="from_month" onchange="updateFormAction()">
+            <option value="1">Январь</option>
+            <option value="2">Февраль</option>
+            <option value="3">Март</option>
+            <option value="4">Апрель</option>
+            <option value="5">Май</option>
+            <option value="6">Июнь</option>
+            <option value="7">Июль</option>
+            <option value="8">Август</option>
+            <option value="9">Сентябрь</option>
+            <option value="10">Октябрь</option>
+            <option value="11">Ноябрь</option>
+            <option value="12">Декабрь</option>
+        </select>
+        <label for="to_month">Выберите финальный месяц:</label>
+        <select name="to_month" id="to_month" onchange="updateFormAction()">
+            <option value="1">Январь</option>
+            <option value="2">Февраль</option>
+            <option value="3">Март</option>
+            <option value="4">Апрель</option>
+            <option value="5">Май</option>
+            <option value="6">Июнь</option>
+            <option value="7">Июль</option>
+            <option value="8">Август</option>
+            <option value="9">Сентябрь</option>
+            <option value="10">Октябрь</option>
+            <option value="11">Ноябрь</option>
+            <option value="12">Декабрь</option>
+        </select>
+        <button type="submit">Скачать отчет</button>
+    </form>
+
+    <script>
+        function updateFormAction() {
+            const fromMonthSelect = document.getElementById('from_month');
+            const fromSelectedMonth = fromMonthSelect.value;
+
+            const toMonthSelect = document.getElementById('to_month');
+            const toSelectedMonth = toMonthSelect.value;
+            const form = document.getElementById('report-form');
+            form.action = `export-report/`
+
+        }
+    </script>
+</body>
+</html>

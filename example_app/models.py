@@ -37,3 +37,25 @@ class Line(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
     updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
+
+class IndicatorLineHeaderView(models.Model):
+    date_valid_until = models.DateField()
+    article_name = models.CharField(max_length=255)
+    article_code = models.CharField(max_length=255)
+    order = models.PositiveIntegerField()
+    last_updated_indicator = models.DateTimeField()
+    updated_by_indicator = models.CharField()
+
+    start_date = models.DateField()
+    end_date = models.DateField()
+    organization = models.CharField()
+    created_at = models.DateTimeField()
+
+    distribution_count = models.IntegerField()
+    targeted_distribution_count = models.IntegerField()
+    last_updated_line = models.DateTimeField()
+    updated_by_line = models.CharField()
+
+    class Meta:
+        managed = False
+        db_table = 'indicator_line_view'

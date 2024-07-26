@@ -37,3 +37,36 @@ Swagger:
 Other:
 ![image](https://github.com/user-attachments/assets/33d3ecff-7437-4efe-b560-6d4915df21bf)
 
+Добавил view для объеденения всех таблиц:
+```
+CREATE VIEW indicator_line_head_view AS
+            SELECT           
+                i.date_valid_until,
+                i.article_name,
+                i.article_code,
+                i.order,
+                i.last_updated as last_updated_indicator,
+                ui.username as username_indicator,
+            
+                h.start_date,
+                h.end_date,
+                o.name,
+                h.created_at,
+            
+                l.distribution_count,
+                l.targeted_distribution_count,
+                l.last_updated as last_updated_line,
+                ul.username as username_line
+            FROM
+                example_app_line AS l
+            JOIN
+                example_app_indicator AS i ON l.indicator_id = i.id
+            JOIN
+                example_app_header AS h ON l.header_id = h.id
+            JOIN
+                example_app_user AS ui ON i.updated_by_id = ui.id
+            JOIN
+                example_app_user AS ul ON l.updated_by_id = ul.id
+            JOIN
+                example_app_organization AS o ON l.header_id = h.id;
+```
